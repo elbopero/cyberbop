@@ -4,34 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Tools</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your main CSS file -->
 </head>
 <body>
     <header>
-        <h1>Cyber Tools</h1>
-        <p>Explore a variety of tools used in cybersecurity to analyze, protect, and defend.</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="tools.html">Cyber Tools</a></li>
+            </ul>
+        </nav>
+        <br>
+        <br>
+        <p>Your Gateway to Cybersecurity Knowledge</p>
+
     </header>
 
+    <section class="intro">
+        <h2 style="color: #FF0066;">Tools used in Cybersecurity to analyze, protect, attack, and defend.</h2> <!-- Adjust color to match index page red/pink -->
+        <br>
+        <nav class="tools-nav">
+            <ul>
+                <li><a href="#network-tools">Network Analysis Tools</a></li>
+                <li><a href="#vulnerability-tools">Vulnerability Scanning Tools</a></li>
+                <li><a href="#forensic-tools">Forensic Tools</a></li>
+                <li><a href="#pentesting-tools">Penetration Testing Tools</a></li>
+                <li><a href="#incident-response-tools">Incident Response Tools</a></li>
+            </ul>
+        </nav>
+    </section>
+
     <main>
-        <section>
-            <h2>Network Analysis Tools</h2>
+        <section id="network-tools">
+            <h1>Network Analysis Tools</h1>
             <ul>
                 <li><strong>Wireshark</strong> - A powerful network protocol analyzer for capturing and analyzing network traffic.</li>
                 <li><strong>Nmap</strong> - A network scanning tool used to discover hosts and services on a computer network.</li>
+                <li><strong>Snort</strong> - An open-source intrusion detection and prevention system (IDS/IPS) used to monitor network traffic and detect potential threats.</li>
             </ul>
         </section>
-
-        <section>
-            <h2>Vulnerability Scanning Tools</h2>
+        <br>
+        <br>
+        <section id="vulnerability-tools">
+            <h1>Vulnerability Scanning Tools</h1>
             <ul>
                 <li><strong>OWASP ZAP</strong> - A free security tool for finding vulnerabilities in web applications.</li>
                 <li><strong>Nessus</strong> - A vulnerability assessment tool that helps to identify and fix vulnerabilities.</li>
             </ul>
         </section>
-
-        <section>
-            <h2>Forensic Tools</h2>
+        <br>
+        <br>
+        <section id="forensic-tools">
+            <h1>Forensic Tools</h1>
             <ul>
                 <li><strong>Autopsy</strong> - A digital forensics platform and graphical interface to The Sleuth Kit for investigating data.</li>
                 <li><strong>Volatility</strong> - An advanced memory forensics framework for incident response and malware analysis.</li>
-            </ul
+            </ul>
+        </section>
+        <br>
+        <br>
+        <section id="pentesting-tools">
+            <h1>Penetration Testing Tools</h1>
+            <ul>
+                <li><strong>Metasploit</strong> - A tool for developing and executing exploit code against a remote target machine.</li>
+                <li><strong>Burp Suite</strong> - An integrated platform for performing web application security testing.</li>
+                <li><strong>Hydra</strong> - A password-cracking tool that supports numerous protocols for brute-forcing passwords on network services.</li>
+            </ul>
+        </section>
+        <br>
+        <br>
+        <section id="incident-response-tools">
+            <h1>Incident Response Tools</h1>
+            <ul>
+                <li><strong>Splunk</strong> - A comprehensive log analysis and monitoring tool used for security information and event management (SIEM) and threat detection.</li>
+                <li><strong>Microsoft Sentinel</strong> - A cloud-native SIEM and SOAR solution for advanced threat detection, investigation, and response.</li>
+                <li><strong>YARA</strong> - A tool for identifying and classifying malware, used extensively in threat detection and malware analysis.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CyberBop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
