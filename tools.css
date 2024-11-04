@@ -1,0 +1,105 @@
+@import url('styles.css'); /* Import common styles */
+
+header {
+    background-image: url('hacker.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px 0; /* Compact padding */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+header p {
+    display: inline-block; /* Restrict the background to the text area */
+    background-color: black; /* Black background with some opacity */
+    color: #b0bec5;
+    padding: 5px 10px; /* Adjust padding as needed */
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin: 5px 0 20px; /* Space around the element */
+}
+
+/* Page Heading */
+.main-heading {
+    text-align: center;
+    color: #ff4081;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Category Header */
+.category-header {
+    color: #ff4081; /* Red/Pink color for category headers */
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Tool Cards Grid Layout */
+.tool-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Category Navigation Links */
+.category-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.category-links a {
+    color: #00BFFF; /* Blue color for links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with slight opacity */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-links a:hover {
+    color: #FFFFFF; /* White on hover */
+    background-color: #00BFFF; /* Blue background on hover */
+}
+
+
+/* Individual Tool Card */
+.tool-card {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.tool-card h3 {
+    color: #00BFFF; /* Blue color for tool names */
+    margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+    color: #b0bec5;
+    font-size: 0.9rem;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .tool-category {
+        justify-content: center;
+    }
+}
