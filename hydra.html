@@ -40,7 +40,15 @@
                     <li>Using the Hydra tool</li>
                     <li>Logging in to verify credentials</li>
                 </ol>
+                <br>
+                <br>
+                <br>
+                <h2>Video walkthrough</h2>
+                <div id="videoWrapper">
+                    <iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/nYsI-Cf4Dvo" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
+            
         </section>
         <br>
         <section class="info-card">
@@ -112,3 +120,18 @@
     </footer>
 </body>
 </html>
+
+<script>
+    document.getElementById("videoWrapper").addEventListener("click", function() {
+        const video = document.getElementById("myVideo");
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+            video.msRequestFullscreen();
+        }
+    });
+    </script>
