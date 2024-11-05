@@ -102,6 +102,22 @@ main {
     flex-wrap: wrap;
 }
 
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.project-link .project-card {
+    cursor: pointer; /* Shows a pointer on hover */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-link .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
 .project-card {
     background: #1a1a1a;
     border-radius: 8px;
