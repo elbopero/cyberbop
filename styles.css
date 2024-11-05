@@ -155,3 +155,67 @@ footer {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
 }
+
+/* Centered card for content */
+.projects {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.content-card {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 80%; /* Adjust width as necessary */
+    max-width: 600px;
+    text-align: center;
+}
+
+.content-card h2 {
+    color: #03a9f4; /* Blue color for title */
+    margin-bottom: 1rem;
+}
+
+.content-card ol {
+    color: #b0bec5;
+    text-align: left;
+    padding-left: 1rem; /* Align bullets */
+}
+
+.content-card ol li {
+    margin-bottom: 0.5rem;
+}
+
+/* General card styling for each section */
+.info-card, .content-card {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 80%; /* Adjust width as necessary */
+    max-width: 600px;
+    margin: 2rem auto; /* Center and add spacing */
+    text-align: center;
+}
+
+.info-card h2, .content-card h2 {
+    color: #00BFFF; /* Blue color for section titles */
+    margin-bottom: 1rem;
+}
+
+.info-card p, .content-card ol, .content-card li {
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+/* Content list styling */
+.content-card ol {
+    padding-left: 1.5rem; /* Add indentation */
+    text-align: left; /* Align text for better readability */
+}
+
+.content-card li {
+    margin-bottom: 0.5rem; /* Add spacing between items */
+}

@@ -26,29 +26,87 @@
     <main>
         <section class="intro">
             <h2>Brute-force attack with Hydra</h2>
-            <p>Let's crack passwords using the Hydra tool to perform brute-force attacks. In this walkthrough we will attack a machine called Metasploitable 2. Metasploitable 2 is a vulnerable machine created for learning purposes, which gives us a great opportunity to show various types of attacks. I will use a Kali Linux machine to perform the attacks.</p>
+            <p>Let's crack passwords using the Hydra tool to perform brute-force attacks. In this walkthrough, we will attack a machine called Metasploitable 2. Metasploitable 2 is a vulnerable machine created for learning purposes, which gives us a great opportunity to show various types of attacks. I will use a Kali Linux machine to perform the attacks.</p>
         </section>
         <br>
         <br>
         <section class="projects">
-            <h2>Featured Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Network Defense</h3>
-                    <p>A project focusing on network defense strategies and IDS configurations.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Malware Analysis</h3>
-                    <p>Analyzing malware patterns to detect and prevent potential threats.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Penetration Testing</h3>
-                    <p>Simulating attacks to find and fix vulnerabilities in systems.</p>
-                </div>
+            <div class="content-card">
+                <h2>Content</h2>
+                <ol>
+                    <li>Introduction</li>
+                    <li>Password and user list</li>
+                    <li>Information gathering</li>
+                    <li>Using the Hydra tool</li>
+                    <li>Logging in to verify credentials</li>
+                </ol>
             </div>
         </section>
-    </main>
+        <br>
+        <section class="info-card">
+            <h2>Introduction</h2>
+            <p>To perform the brute-force attack, we will be using the Hydra tool which comes preinstalled with Kali Linux. Our attack target is going to be the DVWA machine, which comes with the vulnerable Metasploitable 2. In the next part (User and password list), we will create files that we are going to use in our brute-force attack.</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/kali.png" alt="Kali Linux" width="500px" height="300px">
+                <img src="/pictures/hydra/metasploitable.png" alt="Metasploitable 2" width="500px" height="300px">
+                <img src="pictures/hydra/dvwa.png" alt="DVWA" width="500px" height="300px">
+            </div>
+        </section>
+        <section class="info-card">
+            <h2>Setup user and password lists</h2>
+            <p>When we are performing the attack using Hydra we need to feed Hydra with usernames and passwords that it will use in the attack. Usernames and passwords can be specified directly, but this is only effective if we know either username or password or else this will be time consuming. In this scenario we will assume that we dont know either, therefore we will create two files, one that contains usernames and one containing passwords. We will then use these files so that Hydra can combine each user from the username file with each password from the password file. I will be using the files showin in the picture as this is for education purposes, for a real attack there are many strong password lists out there (rockyou.txt!).</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/hydra_files.png" alt="User and password files" width="500px" height="300px">
+            </div>
+            <p>Constructing our Hydra command:</p>
+            <p>hydra -L users.txt -P passwords.txt 192.168.208.129</p>
+        </section>
+        <section class="info-card">
+            <h2>Information gathering</h2>
+            <p>We need to gather more information to know exactly how we are going to construct our command when using Hydra. For now we have users, passwords and IP address, but we also need to find out what kind of request method is used by the application. To find this out we wil use Burp Suite to capture a login attempt that will give us what we need.</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/login_method.png" alt="Burp Suite intercept" width="500px" height="120px">
+            </div>
+            <p>Constructing our Hydra command:</p>
+            <p>hydra -L users.txt -P passwords.txt 192.168.208.129 http-post-form</p>
+            <br>
+            <p>Now let's inspect the field values in the login form so we know how to pass along our users and passwords. We will do this by right-clicking inside the username and password field and on the login button to inspect them.</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/inspect.png" alt="Burp Suite intercept" width="400px" height="500px">
+                <img src="/pictures/hydra/fields.png" alt="Field values" width="700px" height="180px">
+            </div>
+            <p>Constructing our Hydra command:</p>
+            <p>hydra -L users.txt -P passwords.txt 192.168.208.129 http-post-form "/dvwa/login.php:username=^PASS^:password=^PASS^&Login=submit"</p>
+            <br>
+            <p>We also need to know what indicates an unsuccessful login attempt, so we can use this information with Hydra. This lets the Hydra tool know when an successful login takes place by noticing when the error message is not appearing. We are logging in just to poke the application and see how it respons.</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/loginerror.png" alt="Login attempt" width="400px" height="100px">
+            </div>
+            <p>The application provides an "Login failed" message which is all we need, as we can assume this wont happen on a successful login.</p>
+            <br>
+            <p>Constructing our Hydra command:</p>
+            <p>hydra -L users.txt -P passwords.txt 192.168.208.129 http-post-form "/dvwa/login.php:username=^PASS^:password=^PASS^&Login=submit:Login failed"</p>
 
+        </section>
+        <section class="info-card">
+            <h2>Using the Hydra tool</h2>
+            <p>Now that we have gathered the information we need it's time to put our attack to the test. We will use the command we have constructed.</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/hydraattack.png" alt="Bruteforce attempt" width="1000px" height="200px">
+            </div>
+            <p>In the picture we see that Hydra highlights the credentials in green with username: admin and password: password.</p>
+        </section>
+        <section class="info-card">
+            <h2>Logging in to verify credentials</h2>
+            <p>Now it's time to login into the DVWA application with the obtained credentials (admin as user and password as password).</p>
+            <div class="image-gallery">
+                <img src="/pictures/hydra/dvwa_login.png" alt="Bruteforce attempt" width="1200px" height="800px">
+            </div>
+            <p>And we are inside the application.</p>
+            
+        </section>
+    </main>
+    
     <footer>
         <p>&copy; 2024 CyberBop | All rights reserved</p>
     </footer>
