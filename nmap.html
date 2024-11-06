@@ -7,20 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="me.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="tools.html">Cyber Tools</a></li>
-            </ul>
-        </nav>
-        <br>
-        <br>
-        <p>Your Gateway to Cybersecurity Knowledge</p>
-    </header>
+    
+    <div id="header-container"></div>
     
 
     <main>
@@ -109,40 +97,8 @@
     <footer>
         <p>&copy; 2024 CyberBop | All rights reserved</p>
     </footer>
+
+    <script src="scripts.js"></script>
+
 </body>
 </html>
-
-<script>
-    document.getElementById("videoWrapper").addEventListener("click", function() {
-        const video = document.getElementById("myVideo");
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) { // Firefox
-            video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE/Edge
-            video.msRequestFullscreen();
-        }
-    });
-
-    // Function to open modal and display clicked image
-    function openModal(img) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-    }
-
-    // Close the modal when the "x" is clicked
-    document.querySelector(".close").onclick = function() {
-        document.getElementById("imageModal").style.display = "none";
-    };
-
-    // Close the modal when clicking outside the image
-    document.getElementById("imageModal").onclick = function(event) {
-        if (event.target == document.getElementById("imageModal")) {
-            document.getElementById("imageModal").style.display = "none";
-        }
-    };
-</script>
