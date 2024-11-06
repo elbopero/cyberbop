@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberBop - Cybersecurity Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home-page">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="me.html">About Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="tools.html">Cyber Tools</a></li>
+            </ul>
+        </nav>
+        <br>
+        <br>
+        <p>Your Gateway to Cybersecurity Knowledge</p>
+    </header>
+    
+
+    <main>
+        <section class="intro">
+            <h2>Finding vulnerabilities with Nmap</h2>
+            <p>In this walkthrough, we’ll use Nmap (Network Mapper) to scan for open ports and identify potential vulnerabilities on a target machine. Nmap is a powerful, open-source network scanning tool commonly used in cybersecurity for network discovery. We’ll be conducting this scan on Metasploitable 2, a purposefully vulnerable machine designed for learning and testing. By using Nmap, we can uncover critical information about exposed services, detect potential weaknesses, and learn how attackers might target systems. We’ll demonstrate various scanning techniques to get a detailed understanding of the target’s network setup and any exploitable vulnerabilities.</p>
+        </section>
+        <br>
+        <br>
+        <section class="projects-hydra">
+            <div class="content-card">
+                <h2>Content</h2>
+                <ol>
+                    <li>Introduction</li>
+                    <li>How to use Nmap</li>
+                    <li>Different scan types</li>
+                    <li>Basic scan</li>
+                    <li>Version scan</li>
+                </ol>
+                <br>
+                <br>
+                <h2>Video walkthrough</h2>
+                <div id="videoWrapper">
+                    <iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/T8rCZbU70YA" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+        </section>
+        <br>
+        <section class="info-card">
+            <h2>Introduction</h2>
+            <p>To perform the scan, we will be using the Nmap tool which comes preinstalled with Kali Linux. Our attack target is going to be Metasploitable 2. In the next part (How to use Nmap) we will go through how we can use the tool.</p>
+            <br>
+            <div class="image-gallery">
+
+                <!-- Inside your image-gallery div -->
+                <img src="pictures/nmap/scanning.png" alt="Kali Linux" width="500px" height="300px" onclick="openModal(this)">
+
+
+            </div>
+        </section>
+        <section class="info-card">
+            <h2>How to use Nmap</h2>
+            <p>When we are going to scan a device or an application (domain or a IP-address) we must have this in order to scan our target. Using Nmap is very easy and straightforward, we will simply write nmap in our terminal along with the IP-address of our attack target in this scenario. Figuring out the IP-address of our target can be done in multiple ways if we are on the same network, I will use Nmap in this case.</p>
+            <br>
+            <p>In the below picture we are figuring out our own IP-address and the CIDR notation which we will use in the next step to look for our attack target.</p>
+            <div class="image-gallery">
+                <img src="pictures/nmap/ip_check.png" alt="Looking for our IP" width="500px" height="200px" onclick="openModal(this)">
+            </div>
+            <p>In the picture below we are scanning our network for active devices. To verify my target I would have had to perform Nmap scans against all the devices. The scan is very straight forward and easy, the -sn part of the command tells Nmap to just do a quick host discovery and not scan for ports.</p>
+            <div class="image-gallery">
+                <img src="pictures/nmap/target_ip.png" alt="Target IP" width="500px" height="200px" onclick="openModal(this)">
+            </div>
+            
+        </section>
+        <section class="info-card">
+            <h2>Different scan modes</h2>
+            <p>Before starting to scan our target I want to let you know about the different types of scanning alternatives Nmap can perform. A basic scan will simply tell us what ports are open. Other types of scans are used to determine what services and version of the service is running, scans can be performed faster to save time but this makes it more detectable for our target. Scans can also be adjusted to look for specific known vulnerabilities. In the next part we will look at a basic scan.</p>
+            
+        </section>
+        <section class="info-card">
+            <h2>Basic scan</h2>
+            <p>To perform a basic scan we will just type in "sudo nmap target_ip".</p>
+            <div class="image-gallery">
+                <img src="pictures/nmap/basic_scan.png" alt="Basic Nmap scan" width="500px" height="500px" onclick="openModal(this)">
+            </div>
+            <p>In the picture above we can see the port numbers and what types of services are running on each port marked with red. Attackers seek to exploit vulnerable versions, this scan doesn't provide us this. In the next part we will look at how to find vulnerable versions during our scan.</p>
+        </section>
+        <section class="info-card">
+            <h2>Version scan</h2>
+            <p>To perform a version scan we will add -sV to our command.</p>
+            <div class="image-gallery">
+                <img src="pictures/nmap/version_scan.png" alt="Bruteforce attempt" width="500px" height="500px" onclick="openModal(this)">
+            </div>
+            <p>In the picture above we now see the "Version" columns showing which application and version (if identified) are running on each port. This is a crucial step in many cyberattacks, as there are many known vulnerabilities publicy known which attackers target, knowing which application and version of it is running lets attackers know what kind of vulnerabilities the target is exposed to.</p>
+            
+        </section>
+        
+    </main>
+    <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CyberBop | All rights reserved</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    document.getElementById("videoWrapper").addEventListener("click", function() {
+        const video = document.getElementById("myVideo");
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+            video.msRequestFullscreen();
+        }
+    });
+
+    // Function to open modal and display clicked image
+    function openModal(img) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+    }
+
+    // Close the modal when the "x" is clicked
+    document.querySelector(".close").onclick = function() {
+        document.getElementById("imageModal").style.display = "none";
+    };
+
+    // Close the modal when clicking outside the image
+    document.getElementById("imageModal").onclick = function(event) {
+        if (event.target == document.getElementById("imageModal")) {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    };
+</script>
