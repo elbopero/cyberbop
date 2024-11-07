@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberBop - Cybersecurity Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home-page">
+    
+    <div id="header-container"></div>
+    
+
+    <main>
+        <section class="intro">
+            <h2>Cracking hashes with John the Ripper</h2>
+            <p>In this walkthrough, we’ll use John the Ripper, a popular and powerful open-source password cracking tool used in cybersecurity to test password strength and discover weak passwords. John the Ripper is highly versatile and supports a variety of password hash types, making it a go-to tool for security professionals and ethical hackers. For this demonstration, we’ll create our own hash and crack it to reveal the password. By leveraging John the Ripper, we can identify weak passwords, understand how attackers exploit password vulnerabilities, and learn best practices for strengthening authentication measures. We’ll go through the process of cracking hashes step-by-step to illustrate how attackers might approach password attacks and how to safeguard systems against these vulnerabilities.</p>
+        </section>
+        <br>
+        <br>
+        <section class="projects-hydra">
+            <div class="content-card">
+                <h2>Content</h2>
+                <ol>
+                    <li>Introduction</li>
+                    <li>Creating our own hash</li>
+                    <li>John the Ripper</li>
+                    <li>Identifying hash format</li>
+                    <li>Cracking the hash</li>
+                </ol>
+                <br>
+                <br>
+                <h2>Video walkthrough</h2>
+                <div id="videoWrapper">
+                    <iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/k_t3EJzDRCI" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+        </section>
+        <br>
+        <section class="info-card">
+            <h2>Introduction</h2>
+            <p>To perform the attack, we will be using the password cracking tool John the Ripper which comes preinstalled with Kali Linux. We will be creating our own hash, identify the hash and then crack it to reveal the password.</p>
+        
+            <br>
+            <div class="image-gallery">
+
+                <!-- Inside your image-gallery div -->
+                <img src="pictures/nmap/scanning.png" alt="Kali Linux" width="500px" height="300px" onclick="openModal(this)">
+
+
+            </div>
+        </section>
+        <section class="info-card">
+            <h2>Creating our own hash</h2>
+            <p>To create our hash im going to use CyberChef which can be found at https://gchq.github.io/CyberChef/ and I will use the MD5 hashing algorithm in this example. I will enter "elephant" as input to the function, and this generates the hash "e4b48fd541b3dcb99cababc87c2ee88f".</p>
+            <br>
+            <div class="image-gallery">
+                <img src="pictures/john/create_hash.png" alt="Looking for our IP" width="500px" height="200px" onclick="openModal(this)">
+            </div>
+            <p>In step 1 we choose "hashing" from the left side menu.
+            In step 2 we drag MD5 (the algorithm we are using) into the recipe field.
+            In step 3 we enter our text that we want to create the hash for (elephant in this example).
+            In step 4 we receive the output hash from the function: e4b48fd541b3dcb99cababc87c2ee88f, this is the hash we will be cracking.</p>
+
+            
+        </section>
+        <section class="info-card">
+            <h2>John the Ripper</h2>
+            <p>To use John the Ripper we need to find out what type of hash format we are dealing with, we created it so we know it is MD5, but lets assume we didn't know (like real attackers). We also need to provide a file containing different passwords, that John the Ripper will use to calculate hashes for and compare it against the hash we are trying to crack.</p>
+            <div class="image-gallery">
+                <img src="pictures/john/john_cmd.png" alt="Looking for our IP" width="500px" height="70px" onclick="openModal(this)">
+            </div>
+            <p>We will start with "john" to specify which tool we are using, and then choose which format, and with wordlist we will provide our file loaded with passwords (rockyou.txt) and lastly we will type our file that contains our hash that we want to crack.</p>
+        </section>
+        <section class="info-card">
+            <h2>Identifying hash format</h2>
+            <p>In this part we will identify what type of hashing format we are dealing with. I just googled "Hash Analyzer" and chose my top pick, and entered the hash value into its analyzer field.</p>
+            <div class="image-gallery">
+                <img src="pictures/john/identify_hash.png" alt="Basic Nmap scan" width="500px" height="500px" onclick="openModal(this)">
+            </div>
+            <p>In the picture above we can see the analyzer tool identifies our hash as MD5 or MD4.</p>
+        </section>
+        <section class="info-card">
+            <h2>Cracking the hash</h2>
+            <p>After typing "john --list-formats | grep -i "md5", all the MD5 formats that John supports are listed. In this we wouldn't necessarily be sure about which one it would be, or if it was a MD4 like the analyzer also suggested, and here my tip is to do the dirty work and try each one.</p>
+            <div class="image-gallery">
+                <img src="pictures/john/hash_cracked.png" alt="Bruteforce attempt" width="500px" height="100px" onclick="openModal(this)">
+            </div>
+            <p>The password is cracked using the format raw-md5, and luckily for us this mean that the rockyou.txt file we used contains the md5 hash for the word "elephant", and John the Ripper has a match on the hash we gave it from our hash.txt file.</p>
+            
+        </section>
+        
+    </main>
+    <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CyberBop | All rights reserved</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>
