@@ -6,19 +6,22 @@ async function loadHeader() {
 loadHeader();
 
 
+const isHydraPage = document.querySelector("#video-wrapper") ? true:false;
 
-document.getElementById("videoWrapper").addEventListener("click", function() {
-    const video = document.getElementById("myVideo");
-    if (video.requestFullscreen) {
-        video.requestFullscreen();
-    } else if (video.mozRequestFullScreen) { // Firefox
-        video.mozRequestFullScreen();
-    } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) { // IE/Edge
-        video.msRequestFullscreen();
-    }
-});
+if(isHydraPage) {
+    document.getElementById("video-wrapper").addEventListener("click", function() {
+        const video = document.getElementById("my-video");
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+            video.msRequestFullscreen();
+        }
+    });
+}
 
 // Function to open modal and display clicked image
 function openModal(img) {
@@ -28,14 +31,23 @@ function openModal(img) {
     modalImg.src = img.src;
 }
 
-// Close the modal when the "x" is clicked
-document.querySelector(".close").onclick = function() {
-    document.getElementById("imageModal").style.display = "none";
-};
+const isPictureClosingPage = document.querySelector("#imageModal") ? true:false;
 
-// Close the modal when clicking outside the image
-document.getElementById("imageModal").onclick = function(event) {
-    if (event.target == document.getElementById("imageModal")) {
+    if (isPictureClosingPage) {
+        document.querySelector(".close").onclick = function() {
         document.getElementById("imageModal").style.display = "none";
-    }
-};
+    };
+}
+// Close the modal when the "x" is clicked
+
+const isOutsideClickPage = document.getElementById("imageModal") ? true:false;
+
+if (isOutsideClickPage) {
+    document.getElementById("imageModal").onclick = function(event) {
+        if (event.target == document.getElementById("imageModal")) {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    };
+}
+// Close the modal when clicking outside the image
+

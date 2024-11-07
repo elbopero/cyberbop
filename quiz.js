@@ -103,13 +103,22 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 }
 
-nextButton.addEventListener("click", ()=>{
-    if(currentQuestionIndex < questions.length){
-        handleNextButton();
-    } else {
-        startQuiz();
-    }
-})
+const isQuizPage =
+  document.querySelector("#quiz") || document.querySelector("#next-btn")
+    ? true
+    : false;
+
+
+
+if(isQuizPage){
+    nextButton.addEventListener("click", ()=>{
+        if(currentQuestionIndex < questions.length){
+            handleNextButton();
+        } else {
+            startQuiz();
+        }
+    })
+}
 
 function handleNextButton(){
     currentQuestionIndex++;
@@ -127,4 +136,6 @@ function showScore(){
     nextButton.style.display = "block";
 }
 
+if(isQuizPage){
 startQuiz();
+}
