@@ -21,8 +21,8 @@ const questions = [
         question: "What does ISMS stand for in InfoSec?",
         answers: [
             { text: "Information Security Monitoring System", correct: false},
-            { text: "Information Security Management System", correct: false},
-            { text: "Integration Security Monitoring System", correct: true},
+            { text: "Information Security Management System", correct: true},
+            { text: "Integration Security Monitoring System", correct: false},
             { text: "Integration Security Management System", correct: false},
         ]
     },
